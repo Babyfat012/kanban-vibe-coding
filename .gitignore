@@ -35,6 +35,24 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# sqlite
+*.db
+*.sqlite
+*.sqlite3
+
 # vercel
 .vercel
 
