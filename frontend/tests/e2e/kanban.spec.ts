@@ -1,7 +1,22 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const login = async (page: Page) => {
+    await page.getByLabel("Username").fill("user");
+    await page.getByLabel("Password").fill("password");
+    await page.getByRole("button", { name: "Sign in" }).click();
+};
+
+test("requires login before showing the board", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.getByRole("heading", { name: "Sign in to your board" })).toBeVisible();
+    await login(page);
+    await expect(page.getByRole("heading", { name: "Project Delivery" })).toBeVisible();
+});
 
 test("loads seeded board with 5 columns", async ({ page }) => {
     await page.goto("/");
+    await login(page);
 
     await expect(page.getByRole("heading", { name: "Project Delivery" })).toBeVisible();
     await expect(page.locator("section[data-testid^='column-']")).toHaveCount(5);
@@ -10,6 +25,7 @@ test("loads seeded board with 5 columns", async ({ page }) => {
 
 test("adds and deletes a card", async ({ page }) => {
     await page.goto("/");
+    await login(page);
 
     const todoColumn = page.getByTestId("column-todo");
     await todoColumn.getByPlaceholder("Card title").fill("E2E card");

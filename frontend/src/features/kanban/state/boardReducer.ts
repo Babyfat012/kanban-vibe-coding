@@ -32,6 +32,9 @@ export const boardReducer = (
     action: BoardAction,
 ): BoardState => {
     switch (action.type) {
+        case "replaceBoard": {
+            return action.payload.board;
+        }
         case "renameColumn": {
             const { columnId, name } = action.payload;
             const column = state.columns[columnId];

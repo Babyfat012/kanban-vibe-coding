@@ -33,6 +33,170 @@ body {
   padding: 2rem 2.5rem;
 }
 
+.auth-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.app-shell {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+}
+
+.board-panel {
+  min-width: 0;
+}
+
+.auth-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-card {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  max-width: 420px;
+  padding: 2rem;
+}
+
+.auth-card h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.auth-subtitle {
+  color: var(--gray-text);
+  margin-bottom: 1.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.auth-form label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.auth-form input {
+  border: 1px solid rgb(3 33 71 / 0.12);
+  border-radius: 8px;
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+}
+
+.auth-form input:focus {
+  border-color: var(--blue-primary);
+  outline: none;
+}
+
+.auth-error {
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+.ai-sidebar {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 80vh;
+  padding: 1.5rem;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.ai-header h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.ai-header p {
+  color: var(--gray-text);
+  font-size: 0.85rem;
+}
+
+.ai-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.ai-message {
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.ai-message.assistant {
+  background: rgb(32 157 215 / 0.12);
+  color: var(--dark-navy);
+}
+
+.ai-message.user {
+  align-self: flex-end;
+  background: rgb(117 57 145 / 0.12);
+  color: var(--dark-navy);
+}
+
+.ai-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ai-form textarea {
+  border: 1px solid rgb(3 33 71 / 0.12);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.7rem;
+  resize: vertical;
+}
+
+.ai-form textarea:focus {
+  border-color: var(--blue-primary);
+  outline: none;
+}
+
+.ai-error {
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+.ai-hint {
+  color: var(--gray-text);
+  font-size: 0.75rem;
+}
+
+.ai-footer {
+  color: var(--gray-text);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 1080px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-sidebar {
+    position: static;
+    max-height: none;
+  }
+}
+
 .board-shell {
   display: flex;
   flex-direction: column;

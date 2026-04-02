@@ -65,4 +65,18 @@ describe("boardReducer", () => {
         expect(next.columns.todo.cardIds).toEqual(["card-2"]);
         expect(next.columns.done.cardIds).toEqual(["card-6", "card-1"]);
     });
+
+    it("replaces the board state", () => {
+        const replacement = {
+            ...seedBoard,
+            columnOrder: ["todo"],
+        };
+
+        const next = boardReducer(seedBoard, {
+            type: "replaceBoard",
+            payload: { board: replacement },
+        });
+
+        expect(next.columnOrder).toEqual(["todo"]);
+    });
 });

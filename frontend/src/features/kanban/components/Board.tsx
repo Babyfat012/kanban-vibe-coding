@@ -9,7 +9,7 @@ import {
     useSensor,
     useSensors,
 } from "@dnd-kit/core";
-import { useMemo, useReducer, useState } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { seedBoard } from "../data/seedBoard";
 import { boardReducer, findColumnByCardId } from "../state/boardReducer";
 import { BoardState, Card } from "../types";
@@ -26,9 +26,35 @@ const findColumnForDroppable = (
     return findColumnByCardId(board, itemId);
 };
 
-export function Board() {
-    const [board, dispatch] = useReducer(boardReducer, seedBoard);
+type BoardProps = {
+    initialBoard?: BoardState;
+    onBoardChange?: (board: BoardState) => void;
+};
+
+export function Board({ initialBoard, onBoardChange }: BoardProps) {
+    const [board, dispatch] = useReducer(boardReducer, initialBoard ?? seedBoard);
     const [activeCardId, setActiveCardId] = useState<string | null>(null);
+    const isFirstChange = useRef(true);
+
+    useEffect(() => {
+        if (initialBoard) {
+            dispatch({ type: "replaceBoard", payload: { board: initialBoard } });
+            isFirstChange.current = true;
+        }
+    }, [initialBoard]);
+
+    useEffect(() => {
+        if (!onBoardChange) {
+            return;
+        }
+
+        if (isFirstChange.current) {
+            isFirstChange.current = false;
+            return;
+        }
+
+        onBoardChange(board);
+    }, [board, onBoardChange]);
 
     const sensors = useSensors(
         useSensor(PointerSensor, {

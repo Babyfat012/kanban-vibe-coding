@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban MVP Backend</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 3rem;
+        background: #f7f9fc;
+        color: #032147;
+      }
+      .card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 12px 28px rgb(3 33 71 / 0.09);
+        max-width: 520px;
+        padding: 1.5rem;
+      }
+      h1 {
+        margin-bottom: 0.4rem;
+      }
+      code {
+        background: #eef5fb;
+        padding: 0.2rem 0.4rem;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Project Delivery</h1>
+      <p>This is the static export placeholder for the Kanban demo.</p>
+      <p>
+        Example API response from <code>/api/hello</code>:
+        <strong id="api-result">Loading...</strong>
+      </p>
+      <p style="margin-top: 1rem; color: #888888;">
+        The full Kanban UI will be served here when the Next.js export is built.
+      </p>
+    </div>
+
+    <script>
+      fetch("/api/hello")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("api-result").textContent = data.message;
+        })
+        .catch(() => {
+          document.getElementById("api-result").textContent = "API request failed.";
+        });
+    </script>
+  </body>
+</html>

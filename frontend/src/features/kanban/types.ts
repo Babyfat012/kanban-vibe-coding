@@ -50,8 +50,16 @@ export type MoveCardAction = {
     };
 };
 
+export type ReplaceBoardAction = {
+    type: "replaceBoard";
+    payload: {
+        board: BoardState;
+    };
+};
+
 export type BoardAction =
     | RenameColumnAction
     | AddCardAction
     | DeleteCardAction
-    | MoveCardAction;
+    | MoveCardAction
+    | ReplaceBoardAction;

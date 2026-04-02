@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "tables": {
+    "users": {
+      "columns": {
+        "id": "TEXT PRIMARY KEY",
+        "username": "TEXT NOT NULL UNIQUE",
+        "created_at": "TEXT NOT NULL"
+      },
+      "indexes": ["username"]
+    },
+    "boards": {
+      "columns": {
+        "id": "TEXT PRIMARY KEY",
+        "user_id": "TEXT NOT NULL",
+        "name": "TEXT NOT NULL",
+        "created_at": "TEXT NOT NULL",
+        "updated_at": "TEXT NOT NULL"
+      },
+      "foreign_keys": [
+        {
+          "column": "user_id",
+          "references": "users(id)",
+          "on_delete": "CASCADE"
+        }
+      ],
+      "indexes": ["user_id"]
+    },
+    "columns": {
+      "columns": {
+        "id": "TEXT PRIMARY KEY",
+        "board_id": "TEXT NOT NULL",
+        "name": "TEXT NOT NULL",
+        "position": "INTEGER NOT NULL",
+        "created_at": "TEXT NOT NULL",
+        "updated_at": "TEXT NOT NULL"
+      },
+      "foreign_keys": [
+        {
+          "column": "board_id",
+          "references": "boards(id)",
+          "on_delete": "CASCADE"
+        }
+      ],
+      "indexes": ["board_id", "position"]
+    },
+    "cards": {
+      "columns": {
+        "id": "TEXT PRIMARY KEY",
+        "board_id": "TEXT NOT NULL",
+        "column_id": "TEXT NOT NULL",
+        "title": "TEXT NOT NULL",
+        "details": "TEXT",
+        "position": "INTEGER NOT NULL",
+        "created_at": "TEXT NOT NULL",
+        "updated_at": "TEXT NOT NULL"
+      },
+      "foreign_keys": [
+        {
+          "column": "board_id",
+          "references": "boards(id)",
+          "on_delete": "CASCADE"
+        },
+        {
+          "column": "column_id",
+          "references": "columns(id)",
+          "on_delete": "CASCADE"
+        }
+      ],
+      "indexes": ["board_id", "column_id", "position"]
+    }
+  }
+}

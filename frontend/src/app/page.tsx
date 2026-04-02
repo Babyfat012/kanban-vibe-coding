@@ -1,9 +1,9 @@
-import { Board } from "@/features/kanban/components/Board";
+import { AuthGate } from "@/features/auth/components/AuthGate";
 
 export default function Home() {
   return (
     <main className="app-container">
-      <Board />
+      <AuthGate />
     </main>
   );
 }
